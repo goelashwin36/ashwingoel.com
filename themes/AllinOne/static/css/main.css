@@ -644,7 +644,7 @@ carousel
 .carousel-content {
   position: absolute;
   right: 0;
-  top: 30%;
+  top: 25%;
   left: 0;
   /* z-index: 15; */
   /* display: -ms-flexbox;
@@ -652,10 +652,14 @@ carousel
   -ms-flex-pack: center;
   justify-content: center;
   padding-left: 0;
-  /* margin-right: 15%;
-  margin-left: 15%; */
+  margin-right: 10%;
+  margin-left: 10%;
   list-style: none;
-}
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.5); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;}
 
 .pull-right {
   float: right;
@@ -752,7 +756,7 @@ toc-nav  scrollspy
 } 
 
 .toc-nav .nav-item, .toc-nav .nav-link {
-  font-size: .8rem;
+  font-size: .9rem;
   font-weight: 400;
   line-height: 1.1rem;
   padding: 0 5px;

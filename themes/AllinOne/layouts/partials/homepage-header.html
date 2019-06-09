@@ -9,7 +9,7 @@
 <div id="site-header" class="carousel slide carousel-fade" data-ride="carousel" >  <!--data-pause="true" data-interval="300000"-->
 
   <!-- Indicators -->
-  <ol class="carousel-indicators">
+  <!-- <ol class="carousel-indicators">
 
     {{ range $index, $element := $files }}
       {{ if eq $index 0 }}
@@ -18,17 +18,17 @@
         <li data-target="#site-header" data-slide-to="{{ $index  }}"></li>
       {{ end }}
     {{ end }}
-  </ol>
+  </ol> -->
   <!-- /.Indicators -->
 
   <!-- Slides -->
   <div class="carousel-inner" role="listbox">
-    {{ range $index, $element := $files }}
-      {{ if eq $index 0 }}
+    <!-- {{ range $index, $element := $files }}
+      {{ if eq $index 0 }} -->
 
         <!-- First slide -->
         <div class="carousel-item active">
-          <div class="view" style="background-image: url('{{ $pathURL | absURL }}/{{ .Name }}'); background-repeat: no-repeat; background-size: cover;">
+          <div class="view" style="background-image: url('{{ $pathURL | absURL }}/{{ .Name }}'); background-repeat: no-repeat; background-size: cover; background-position: 90% 50%;filter: blur(5px);-webkit-filter: blur(5px);">
 
             <!-- Mask & flexbox options-->
             <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
@@ -45,25 +45,25 @@
           </div>
         </div>
         <!-- /.First slide -->
-      {{ else }}
+      <!-- {{ else }} -->
 
         <!-- Second slide -->
-        <div class="carousel-item">
-          <div class="view" style="background-image: url('{{ $pathURL | absURL }}/{{ .Name }}'); background-repeat: no-repeat; background-size: cover;">
+        <!-- <div class="carousel-item">
+          <div class="view" style="background-image: url('{{ $pathURL | absURL }}/{{ .Name }}'); background-repeat: no-repeat; background-size: cover;"> -->
 
             <!-- Mask & flexbox options -->
-            <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+            <!-- <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
 
             
 
-            </div>
+            </div> -->
             <!-- /.Mask & flexbox options -->
 
-          </div>
-        </div>
+          <!-- </div>
+        </div> -->
         <!-- /.Second slide -->
-      {{ end }}
-    {{ end }}
+      <!-- {{ end }}
+    {{ end }} -->
 
   
   </div>
@@ -71,14 +71,16 @@
 
   <!-- Content -->
   <div class="carousel-content text-center white-text wow fadeIn">
-    <div class="row mx-0 headfont mb-5 pb-3">
+    <div class="row mx-0 headfont mb-5 pb-3 mt-5 pt-3">
       <!-- Avatar -->
       <div class="col-12 col-sm-5 align-middle">
         <a href="{{ .Site.BaseURL }}">
           {{ if $.Site.Params.avatar }}
-            <img class="pull-right avatar avatar-lg " src="{{ $.Site.Params.avatar | absURL }}" alt="" >
+            <!-- <img class="pull-right avatar avatar-lg " src="{{ $.Site.Params.avatar | absURL }}" alt="" > -->
+            <img class="avatar avatar-lg " src="{{ $.Site.Params.avatar | absURL }}" alt="" >
           {{ else if $.Site.Params.faviconfile }}
-            <img class="pull-right avatar avatar-lg " src="{{ $.Site.Params.faviconfile | absURL }}" alt="" >
+            <img class=" avatar avatar-lg " src="{{ $.Site.Params.faviconfile | absURL }}" alt="" >
+            <!-- <img class="pull-right avatar avatar-lg " src="{{ $.Site.Params.faviconfile | absURL }}" alt="" > -->
           {{ end }}
         </a>
       </div>
@@ -131,10 +133,6 @@
             {{ if $.Site.Params.email }}
                 <a href="mailto:{{ $.Site.Params.email }}"><i class="far fa-envelope-open pr-1" aria-hidden="true"></i></a>
             {{ end }}
-    
-            {{ if and $.Site.Params.include_rss $.RSSLink }}
-                <a href="{{ $.RSSLink }}"><i class="fas fa-rss pr-1" aria-hidden="true"></i></a>
-            {{ end }}
 
         </div>
         <!-- /.Ref Icon -->
@@ -145,14 +143,14 @@
   <!-- /.Content -->
 
   <!-- Controls -->
-  <a class="carousel-control-prev" href="#site-header" role="button" data-slide="prev">
+  <!-- <a class="carousel-control-prev" href="#site-header" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
   <a class="carousel-control-next" href="#site-header" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
-  </a>
+  </a> -->
   <!-- /.Controls -->
 
 </div>

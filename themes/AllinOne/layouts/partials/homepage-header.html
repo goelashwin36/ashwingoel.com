@@ -1,8 +1,17 @@
+
+
 {{ $path := cond (gt (len .Site.Params.slidesDirPath) 0) $.Site.Params.slidesDirPath "themes/AllinOne/static/img/header-slides" }}
 {{ $pathURL := cond (gt (len .Site.Params.slidesDirPathURL) 0) $.Site.Params.slidesDirPathURL "img/header-slides" }} 
 
+{{ $svg := cond (gt (len .Site.Params.slidesDirPath) 0) $.Site.Params.slidesDirPath "themes/AllinOne/static/img/svg/loader.svg" }}
+
+
 {{ $files := readDir $path  }}
 {{ $files := where $files  "Name" "ne" ".DS_Store" }}
+
+<div class="preloader" id="loader">
+  <img id="img_preloader" src="js/loader.svg" alt="Loading...">
+</div>
 
 
 <!-- Carousel Wrapper -->

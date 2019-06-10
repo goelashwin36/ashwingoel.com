@@ -50,15 +50,15 @@ pygmentsuseclasses         = true
   faviconfile              = "img/zheng.png"               # from static/
   avatar                   = "img/profile.jpg"             # path to image in static dir e.g img/avatar.png 
   author                   = "Ashwin Goel"
-  description              = ["Be myself.", "Love the wonderful world.", "Do the right things and be a better man."]           # appears in the site header when set to a non-empty string
-  welcome_head             = "Hello, World!"
-  welcome_word             = "~ No Day But Today ~"
+  description              = ["Security Intern at Appsecco", "Web Developer by hobby"]           # appears in the site header when set to a non-empty string
+  welcome_head             = "Hey!"
+  welcome_word             = ""
 
   latestpostscount         = 5                             # how many posts to display on the home page
   bloggroupby              = 'month'
   dateform                 = "Jan 2, 2006"
   dateformfull             = "2006-01-02  Monday  15:04:05"
-  noshowreadtime           = true                         # if true, don't show "<x> minutes read" in posts
+  noshowreadtime           = false                         # if true, don't show "<x> minutes read" in posts
 
   # slides
   slidesDirPath            = "themes/AllinOne/static/img/header-slides"    # path to image in local dir (path for hugo)
@@ -77,7 +77,7 @@ pygmentsuseclasses         = true
   facebook                 = "//facebook.com/ashwingoel36"
   # twitter                  = "//twitter.com/you"
   instagram                = "//instagram.com/_ashwin_g_"
-  include_rss              = true                          # include RSS <link> tag in <head> and show RSS icon
+  include_rss              = false                          # include RSS <link> tag in <head> and show RSS icon
   
   # analytics
   googleAnalytics          = "UA-140853249-1"

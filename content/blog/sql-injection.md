@@ -82,10 +82,10 @@ Once you know that application is vulnerable to SQL Injection and you have ident
 ## Resources
 
 1. This is an open source tool which `automates` the process of `detecting` and `exploiting` SQL Injection Vulnerabilities.
-   [http://sqlmap.org/](http://sqlmap.org/)
+   [SQLmap](http://sqlmap.org/)
 
 2. This guy has got some really cool resources on `SQL Injection`. Do check it out.
-   [https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection)
+   [SQL Resources](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection)
 
 
 We shall see in depth about the exploitation part and types of SQL Injection in the next Blog.

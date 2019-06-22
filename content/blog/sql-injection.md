@@ -47,9 +47,6 @@ In most of the cases SQL Injection can be detected easily by providing invalid p
 
 Now, we know that the website is vulnerable to SQL Injection and we need to extract sensitive information from the database.
 
-This guy has got some really cool resources on `SQL Injection`. Do check it out.
-[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection)
-
 Before that, we need to identify the `number of columns` the SQL Query return.s This is essential because if we try to extract different number of columns then it will return an error.
 
 We can determine the number of columns by simply using `order by` command.
@@ -86,6 +83,5 @@ Once you know that application is vulnerable to SQL Injection and you have ident
 
 2. This guy has got some really cool resources on `SQL Injection`. Do check it out.
    [SQL Resources](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection)
-
 
 We shall see in depth about the exploitation part and types of SQL Injection in the next Blog.

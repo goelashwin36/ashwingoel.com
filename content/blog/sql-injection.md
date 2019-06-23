@@ -74,12 +74,12 @@ Once you know that application is vulnerable to SQL Injection and you have ident
 
 ## Types of SQL Injection
 
-1. Error based: This type of SQL Injection relies on the `error messages` being thrown by the database server which might provide us some useful information regarding the database structure.
-2. Union based: This techique uses the SQL `UNION` operator to combine the results of two `SELECT` queries and return a single table. It allows an attacker to extract information from other tables by appending the results to the original query made to the database.
-3. Blind Injection: It happens when the application is vulnerable to `SQL Injection` but the results of the `SQL query` are not returned in the `HTTP response`. In this case we query the database for any true/false statement and see the changes for both true and false condition. It is of two types:
-   1. Content-based: In this technique the database server is queried with any conditional statement and the `response` from the server is analysed for any difference while sending a `true` condition and a `false` condition.
-   2. Time-based: This technique relies on injecting an SQL Query that makes the database wait for a specific time based on the specified condition. The time taken by the server to send back a response determines if the query is true/false.
-4. Out-of-band Injection(uncommon): This is not a very common type of `SQL Injection` as it depends on the features being enabled on the database server. It relies on the database server's capability to make a web request like `HTTP`, `DNS`, `ftp` to send data to the attacker.
+1. **Error based**: This type of SQL Injection relies on the `error messages` being thrown by the database server which might provide us some useful information regarding the database structure.
+2. **Union based**: This techique uses the SQL `UNION` operator to combine the results of two `SELECT` queries and return a single table. It allows an attacker to extract information from other tables by appending the results to the original query made to the database.
+3. **Blind Injection**: It happens when the application is vulnerable to `SQL Injection` but the results of the `SQL query` are not returned in the `HTTP response`. In this case we query the database for any true/false statement and see the changes for both true and false condition. It is of two types:
+   1. **Content-based**: In this technique the database server is queried with any conditional statement and the `response` from the server is analysed for any difference while sending a `true` condition and a `false` condition.
+   2. **Time-based**: This technique relies on injecting an SQL Query that makes the database wait for a specific time based on the specified condition. The time taken by the server to send back a response determines if the query is true/false.
+4. **Out-of-band Injection**(uncommon): This is not a very common type of `SQL Injection` as it depends on the features being enabled on the database server. It relies on the database server's capability to make a web request like `HTTP`, `DNS`, `ftp` to send data to the attacker.
 
 ## Resources
 

@@ -17,7 +17,7 @@ pygmentsuseclasses         = true
 
 
 [permalinks]
-  blog                     = "blog/:year-:month/:slug/"
+  blog                     = "blog/:slug/"
 
 
 [taxonomies]
@@ -50,11 +50,11 @@ pygmentsuseclasses         = true
   faviconfile              = "img/Ashwin-Goel-logo.jpg"               # from static/
   avatar                   = "img/Ashwin-Goel-profile.jpg"             # path to image in static dir e.g img/avatar.png 
   author                   = "Ashwin Goel"
-  description              = ["Security Intern at Appsecco", "Web Developer by passion"]           # appears in the site header when set to a non-empty string
-  welcome_head             = "Hey!"
+  description              = ["Cyber Security Enthusiast ", "Web Developer by Passion"]           # appears in the site header when set to a non-empty string
+  welcome_head             = ""
   welcome_word             = ""
 
-  latestpostscount         = 5                             # how many posts to display on the home page
+  latestpostscount         = 5                           # how many posts to display on the home page
   bloggroupby              = 'month'
   dateform                 = "Jan 2, 2006"
   dateformfull             = "2006-01-02  Monday  15:04:05"

@@ -7,7 +7,7 @@ title: "SQL Injection"
 tags: ["sql", "security", "sql injection"]
 # series: ["SQL Injection"]
 categories: ["SQL Injection"]
-# img: "images/blog/sql.jpg"****
+# img: "images/blog/sql.jpg"
 img: ""
 toc: true
 summary: "SQL injection is a web security vulnerability which allows an attacker to alter the SQL queries made to the database. This may lead to disclosure of sensitive datas to the attacker."

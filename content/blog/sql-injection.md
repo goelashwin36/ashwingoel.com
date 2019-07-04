@@ -7,7 +7,7 @@ title: "SQL Injection"
 tags: ["sql", "security", "sql injection"]
 # series: ["SQL Injection"]
 categories: ["SQL Injection"]
-# img: "images/blog/sql.jpg"
+# img: "images/blog/sql.jpg"****
 img: ""
 toc: true
 summary: "SQL injection is a web security vulnerability which allows an attacker to alter the SQL queries made to the database. This may lead to disclosure of sensitive datas to the attacker."
@@ -44,13 +44,15 @@ You can use this cheat sheet to see how to make queries over different SQL datab
 
 ## How to detect the presence of SQL Injection?
 
-In most of the cases SQL Injection can be detected easily by providing invalid parameters like `'`, `''` `a' or 1=1--`, `"a"" or 1=1--"`, ` or a = a`, `a' waitfor delay '0:0:10'--`, `1 waitfor delay '0:0:10'--`, `%26`, `' or username like '%` etc. and observe the changes in the behaviour of the application. You may try to analyse the length of the response from the server and also the time it takes to send the response. Payloads like: `'`, `a' or 1=1--` etc. might show changes in the response by the database server. But in case if there is no change we try to trigger time delays using payload like `a' waitfor delay '0:0:10'--` which might make the server delay for 10 sec before sending a response.
+In most of the cases SQL Injection can be detected easily by providing invalid parameters like `'`, `''` `a' or 1=1--`, `"a"" or 1=1--"`, ` or a = a`, `a' waitfor delay '0:0:10'--`, `1 waitfor delay '0:0:10'--`, `%26`, `' or username like '%` etc. and observe the changes in the behaviour of the application. You may try to analyse the length of the response from the server and also the time it takes to send the response. Payloads like: `'`, `a' or 1=1--` etc. might show changes in the response by the database server. But in case if there is no change we try to trigger time delays using payload like `a' waitfor delay '0:0:10'--` which might make the server delay for a specific time before sending a response.
 
 After determining if the website is vulnerable to `SQL Injection` we can try to extract some sensitive information from the database.
 
 Before that, we need to identify the `number of columns` the SQL Query returns. This is essential because if we try to extract unequal number of columns than what the query actually returns, then it will return an error.
 
 We can determine the number of columns by using the `order by` command.
+
+The `order by` command in `sql` is used to sort the fetched data in either ascending or descending order. On passing a `column number` to this command, it sorts the data based on that particular column number. Now if we provide an invalid column number then an `error` will be returned by sql. This can help us in knowing the number of columns a query returns.
 
 **_For Example:_**
 
@@ -66,7 +68,7 @@ www.onlineshopping.com/products.php?usr=a' order by 4 -- //
 
 The significance of `-- ` is that it's a comment indicator in SQL which makes the rest of the query a comment. Now to preserve the `space` after `--` we add any character after that so that `space` doesn't get ignored in the `Http request`. We might also use `#`, `/* */` for comments depending on the SQL database provider.
 
-Continue this process till you encounter an error. Suppose you encounter an error while using the payload `order by 5` and did not return an error using `order by 4` which means that the query returns `4` columns.
+Continue this process till you encounter an error. Suppose you encounter an error while using the payload `order by 5` and but not while using `order by 4` which means that the query returns `4` columns.
 
 ## How to exploit using SQL Injection
 

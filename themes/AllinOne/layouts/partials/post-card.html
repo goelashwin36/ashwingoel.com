@@ -19,7 +19,7 @@
     {{ with .Params.img }}
     
       <div class="view">
-        <img src="{{ . | absURL }}" />
+        <img src="{{ . | absURL }}" style="max-height: 500px; max-width: 500px; margin: 0px auto;"/>
       </div>
     {{ end }}
 

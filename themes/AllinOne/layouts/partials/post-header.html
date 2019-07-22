@@ -28,7 +28,7 @@
   </ul>
   {{ with .Params.img }}
     <div class="view">
-      <img src="{{ . | absURL }}" />
+      <img src="{{ . | absURL }}" style="max-height: 600px; max-width: 600px; margin: 0px auto;"/>
     </div>
   {{ end }}
 

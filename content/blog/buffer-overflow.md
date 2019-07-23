@@ -96,6 +96,7 @@ Let's dive a little deeper into the concepts now.
 ### Division of Memory for a Running Process
 
 <img src="/images/blog/buffer-overflow/Ashwin-Goel-b4.png" style=" max-height: 500px;">
+Source: [Link](https://kotharitechnotrick.wordpress.com/2013/12/26/memory-mapping-in-c/)
 
 This is how the `memory` assigned to a `process` looks like. There are various sections like `stack`, `heap`, `Uninitialized data` etc. used for different purposes.
 
@@ -121,7 +122,7 @@ The above image shows how a `stack` looks like. It might look intimidating but t
 - In a stack, all the variables are accessed relative to the EBP.
 - In a program, every function has its own stack.
 - Everything is referenced from the EBP register.
-   <img src="/images/blog/buffer-overflow/Ashwin-Goel-b8.png" style=" max-height: 500px;">
+   <img src="/images/blog/buffer-overflow/Ashwin-Goel-b8.png" style=" max-height: 500px;"> Source: [Link](https://itandsecuritystuffs.wordpress.com/2014/03/18/understanding-buffer-overflows-attacks-part-1/)
 
 - Above the EBP, `function parameters` are stored.
 
@@ -169,6 +170,7 @@ The `stack` on the right is of the `function foo` as seen on the left image.
 Now, as shown in the `previous demo`, you could see how Buffer Overflow took place using the local variables.
 
 <img src="/images/blog/buffer-overflow/Ashwin-Goel-b10.png" style=" max-height: 500px;">
+Source: [Link](https://www.securitysift.com/windows-exploit-development-part-2-intro-stack-overflow/)
 
 Imagine a situation where you `overflow` the variables `x`,`y` and `z` in such a way that Old EIP is modified and stores the address of the memory where the `malicious code` is placed.
 

@@ -17,7 +17,7 @@ A `Buffer` is temporary storage usually present in the physical memory used to h
 
 <img src="/images/blog/buffer-overflow/Ashwin-Goel-b1.png" style=" max-height: 500px;">
 
-Consider the most useless program ever made shown on the left image where a character buffer of length 5 is defined. Now in a big cluster of memory, a small memory of 5 bytes would be assigned to the buffer which looks like the image on the right.
+Consider the most useless program ever made shown on the left image where a character buffer of length 5 is defined. In a big cluster of memory, a small memory of 5 bytes would be assigned to the buffer which looks like the image on the right.
 
 ## Buffer Overflow
 
@@ -31,11 +31,11 @@ Without really knowing how the app works, let's enter a random password.
 
 <img src="/images/blog/buffer-overflow/Ashwin-Goel-b2-1.png" style=" max-height: 500px;  ">
 
-Now it says `Authentical Declined` since the password wasn't correct. To test `buffer overflow`, we need to enter large random data.
+It says `Authentical Declined` since the password wasn't correct. To test `buffer overflow`, we need to enter large random data.
 
 <img src="/images/blog/buffer-overflow/Ashwin-Goel-b2-2.png" style=" max-height: 500px;  ">
 
-Now you must be wondering why it got authenticated and why there is a `Segmentation Fault!`. Let's see a more detailed version of the app.
+You must be wondering why it got authenticated and why there is a `Segmentation Fault!`. Let's see a more detailed version of the app.
 <img src="/images/blog/buffer-overflow/Ashwin-Goel-b3-1.png" style=" max-height: 500px;">
 
 As you can see, there are three variables: `auth`, `sys_pass`, and `usr_pass`.
@@ -45,7 +45,7 @@ How the app works is if the  `usr_pass` variable is equal to `sys_pass` then the
 
 You may also see how the variables are stored in memory. Since the address is in `hexadecimal` and there is a difference of 1 therefore, `usr_pass` and `sys_pass` variables are buffers of length 16.
 
-Now to test for Buffer Overflow. A long password is entered as shown.
+To test for Buffer Overflow, a long password is entered as shown.
 
 <img src="/images/blog/buffer-overflow/Ashwin-Goel-b3-2.png" style=" max-height: 500px;">
 
@@ -152,7 +152,7 @@ The above image shows how a `stack` looks like. It might look intimidating but t
 
 ## Exploiting Buffer Overflow
 
-Now let's get into Buffer Overflow exploitation using stack.
+It's time to get into Buffer Overflow exploitation using stack.
 
 Before that, let's try to understand how a stack is built for any function.
 

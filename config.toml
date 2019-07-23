@@ -9,6 +9,7 @@ enableEmoji                = true
 hasCJKLanguage             = true
 summaryLength              = 200
 Paginate                   = 3
+hrefTargetBlank            = true
 
 theme                      = "AllinOne"
 title                      = "Ashwin Goel"

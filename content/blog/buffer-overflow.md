@@ -96,11 +96,11 @@ Let's dive a little deeper into the concepts now.
 ### Division of Memory for a Running Process
 
 <img src="/images/blog/buffer-overflow/Ashwin-Goel-b4.png" style=" max-height: 500px;">
-Source: [Link](https://kotharitechnotrick.wordpress.com/2013/12/26/memory-mapping-in-c/){target="_blank"}
+Source: [Link](https://kotharitechnotrick.wordpress.com/2013/12/26/memory-mapping-in-c/)
 
 This is how the `memory` assigned to a `process` looks like. There are various sections like `stack`, `heap`, `Uninitialized data` etc. used for different purposes.
 
-You may read more about the memory layout here: [Memory Layout of a Process.](https://www.thegeekstuff.com/2012/03/linux-processes-memory-layout/){target="_blank"}
+You may read more about the memory layout here: [Memory Layout of a Process.](https://www.thegeekstuff.com/2012/03/linux-processes-memory-layout/)
 
 This blog focuses on `Buffer Overflow` in `Stack` so let's look at that.
 
@@ -122,7 +122,7 @@ The above image shows how a `stack` looks like. It might look intimidating but t
 - In a stack, all the variables are accessed relative to the EBP.
 - In a program, every function has its own stack.
 - Everything is referenced from the EBP register.
-   <img src="/images/blog/buffer-overflow/Ashwin-Goel-b8.png" style=" max-height: 500px;"> Source: [Link](https://itandsecuritystuffs.wordpress.com/2014/03/18/understanding-buffer-overflows-attacks-part-1/){target="_blank"}
+   <img src="/images/blog/buffer-overflow/Ashwin-Goel-b8.png" style=" max-height: 500px;"> Source: [Link](https://itandsecuritystuffs.wordpress.com/2014/03/18/understanding-buffer-overflows-attacks-part-1/)
 
 - Above the EBP, `function parameters` are stored.
 
@@ -170,7 +170,7 @@ The `stack` on the right is of the `function foo` as seen on the left image.
 Now, as shown in the `previous demo`, you could see how Buffer Overflow took place using the local variables.
 
 <img src="/images/blog/buffer-overflow/Ashwin-Goel-b10.png" style=" max-height: 500px;">
-Source: [Link](https://www.securitysift.com/windows-exploit-development-part-2-intro-stack-overflow/){target="_blank"}
+Source: [Link](https://www.securitysift.com/windows-exploit-development-part-2-intro-stack-overflow/)
 
 Imagine a situation where you `overflow` the variables `x`,`y` and `z` in such a way that Old EIP is modified and stores the address of the memory where the `malicious code` is placed.
 
@@ -185,7 +185,7 @@ So after the function gets executed, the instruction pointed by the `Return addr
 This is pretty much how Buffer Overflow happens.
 
 You must watch this video [Buffer Overflow Attack - Computerphile](https://www.youtube.com/watch?v=1S0aBV-Waeo) to get a more realistic idea of Buffer Overflow.
-The `codes` used in the above video are present [here](https://gist.github.com/apolloclark/6cffb33f179cc9162d0a){target="_blank"}.
+The `codes` used in the above video are present [here](https://gist.github.com/apolloclark/6cffb33f179cc9162d0a).
 
 ## Security Measures
 
@@ -199,9 +199,9 @@ The `codes` used in the above video are present [here](https://gist.github.com/a
 
 ## References
 
-- [Smashing The Stack For Fun And Profit](https://insecure.org/stf/smashstack.html){target="_blank"}
-- [Buffer Overflow Exploits and Countermeasures](http://homes.sice.indiana.edu/yh33/Teaching/I433-2016/lec11-more-bo.pdf){target="_blank"}
-- [Buffer-Overflow Vulnerabilities and Attacks](http://www.cis.syr.edu/~wedu/Teaching/IntrCompSec/LectureNotes_New/Buffer_Overflow.pdf){target="_blank"}
+- [Smashing The Stack For Fun And Profit](https://insecure.org/stf/smashstack.html)
+- [Buffer Overflow Exploits and Countermeasures](http://homes.sice.indiana.edu/yh33/Teaching/I433-2016/lec11-more-bo.pdf)
+- [Buffer-Overflow Vulnerabilities and Attacks](http://www.cis.syr.edu/~wedu/Teaching/IntrCompSec/LectureNotes_New/Buffer_Overflow.pdf)
 
 ## Acknowledgement
 

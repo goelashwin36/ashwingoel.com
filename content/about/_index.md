@@ -13,4 +13,4 @@ Being interested in cyber security, I’m following it since my college first ye
 
 Since security is a vast domain so I’m still trying to find my interest in a particular subdomain, but life is huge to learn so, I’m open to everything that hinders my path towards hacking and securing even the most beautiful apps built.
 
-Interning with Appsecco is a great honor and one of the biggest opportunity one could ever get. Being an Intern, I learned the minutest of the things on which one would never pay attention to. Majorly, I learned OWASP TOP 10, their exploitation and security as well, OSINT, Android Pentesting, Hacking VMs, Cloud Security, and some Devops.
+Interning with Appsecco was a great honor and one of the biggest opportunity one could ever get. Being an Intern, I learned the minutest of the things on which one would never pay attention to. Majorly, I learned OWASP TOP 10, their exploitation and security as well, OSINT, Android Pentesting, Hacking VMs, Cloud Security, and some Devops.

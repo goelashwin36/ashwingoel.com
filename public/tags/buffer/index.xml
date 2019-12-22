@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Buffer on Ashwin Goel</title>
+    <link>https://ashwingoel.com/tags/buffer/</link>
+    <description>Recent content in Buffer on Ashwin Goel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zn-Hans</language>
+    <lastBuildDate>Mon, 22 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://ashwingoel.com/tags/buffer/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Buffer Overflow</title>
+      <link>https://ashwingoel.com/blog/buffer-overflow/</link>
+      <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ashwingoel.com/blog/buffer-overflow/</guid>
+      <description>Buffer A Buffer is temporary storage usually present in the physical memory used to hold data.
+Consider the most useless program ever made shown on the left image where a character buffer of length 5 is defined. In a big cluster of memory, a small memory of 5 bytes would be assigned to the buffer which looks like the image on the right.
+Buffer Overflow A Buffer Overflow occurs when more data is written to a specific length of memory such that adjacent memory addresses are overwritten.
+DEMO(Controlling Local Variables):
+Let&amp;rsquo;s take an example of a basic authentication app which asks for a password and returns Authenticated! if the password is correct.
+Without really knowing how the app works, let&amp;rsquo;s enter a random password.
+It says Authentical Declined since the password wasn&amp;rsquo;t correct. To test buffer overflow, we need to enter large random data.
+You must be wondering why it got authenticated and why there is a Segmentation Fault!. Let&amp;rsquo;s see a more detailed version of the app. As you can see, there are three variables: auth, sys_pass, and usr_pass. The auth variable determines if the user is authenticated or not depending on the value(initially 0). The usr_pass stores the password that the user enters and the sys_pass variable is what the correct password is.</description>
+    </item>
+    
+  </channel>
+</rss>

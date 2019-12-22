@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zn-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
+    
+    <meta name="author" content="Ashwin Goel">
+    <meta name="description" content="Ashwin Goel. Aspiring Cyber-Security professional. Web-Developer by passion.">
+    <meta name="keywords" content="Ashwin,Goel,Security,Cyber-Security,Web,Developer,Web-Developer,Ashwin Goel,Software Developer,Software,Deveoper">
+
+
+    <meta property="og:title" content="SQL Injection" />
+<meta property="og:description" content="SQL INJECTION SQL injection is a web security vulnerability which allows an attacker to alter the SQL queries made to the database. This can be used to retrieve some sensitive information like database structure, tables, columns and their underlying data.
+For Example:
+Suppose an application uses the following query to fetch the login details of a person:
+SELECT USERNAME,PASSWORD from USERS where USERNAME=&#39;&lt;username&gt;&#39; AND PASSWORD=&#39;&lt;password&gt;&#39;;  Here username and password is the input provided by the user. Suppose an attacker gives the input as &#39; OR &#39;1&#39;=&#39;1 in both the fields. Therefore, the SQL query will look like:
+SELECT USERNAME,PASSWORD from USERS where USERNAME=&#39;&#39; OR &#39;1&#39;=&#39;1&#39; AND PASSWORD=&#39;&#39; OR &#39;1&#39;=&#39;1&#39;;  This query results in a true statement thus, the user gets logged in. This example depicts the most basic type of SQL injection.
+SQL injection can be used anywhere to fetch any sensitive information from the Database.
+Note: This was the most basic example and meant only for understanding purposes. You&rsquo;ll mostly not find any such cases in the real world.
+You can use this cheat sheet to see how to make queries over different SQL database providers. SQL Injection Cheat Sheet
+How to detect the presence of SQL Injection?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ashwingoel.com/blog/sql-injection/" />
+
+
+
+<meta property="article:published_time" content="2019-06-10T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2019-06-10T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+    <title>
+        Ashwin Goel
+    </title>
+
+    <link rel="canonical" href="https://ashwingoel.com/blog/sql-injection/">
+
+    
+    
+
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140853249-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-140853249-1');
+    </script>
+
+
+    
+    <link href="https://ashwingoel.com/css/vendors-extensions/fontawesome/all.min.css" rel="stylesheet">
+
+    
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:300,400,500,600">
+    <link href="https://ashwingoel.com/css/font.css" rel="stylesheet">
+
+    
+    <link href="https://ashwingoel.com/css/vendors/bootstrap4/bootstrap.min.css" rel="stylesheet">
+    <link href="https://ashwingoel.com/css/vendors-extensions/mdb/mdb.min.css" rel="stylesheet">
+    <link href="https://ashwingoel.com/css/vendors/mdb/style.min.css" rel="stylesheet">
+    <link href="https://ashwingoel.com/css/main.css" rel="stylesheet">
+
+
+    
+    <link rel="shortcut icon"  href="https://ashwingoel.com/img/Ashwin-Goel-logo.jpg"
+        >
+
+
+    
+    
+    <style type="text/css">
+        @media (min-width: 800px) and (max-width: 850px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #1C2331 !important;
+            }
+        }
+    </style>
+
+
+    
+    
+    <link rel="stylesheet" href="https://ashwingoel.com/js/vendors/katex/katex.min.css">
+    
+    
+
+    
+    
+    <link rel="stylesheet" href="https://ashwingoel.com/css/vendors/highlight/github-gist.css">
+    
+
+    
+<script type="text/javascript" src="https://ashwingoel.com/js/vendors/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://ashwingoel.com/js/vendors/jquery/jquery.smooth-scroll.min.js"></script>
+
+<script>
+    
+    $(window).ready(function () {
+      $('#loader').delay(1000).fadeOut(350);
+    });
+  </script>
+</head>
+  <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
+  
+    
+    
+
+    
+      
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      
+      <a class="navbar-brand" href="https://ashwingoel.com">
+          
+        <img class="avatar" src="https://ashwingoel.com/img/Ashwin-Goel-logo.jpg" style="width: 40px!important;height: auto;"  class="d-inline-block align-top" alt="" >
+        
+        <strong> Ashwin Goel</strong>
+      </a>
+
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item ">
+            <a class="nav-link" href="https://ashwingoel.com">Home</a>
+          </li>
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://ashwingoel.com/blog/" >Blog  </a>
+            </li>
+          
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://drive.google.com/file/d/1mvhzfnxkVf5vxiohIjEZa8KY3p3tvM4l/view?usp=sharing" >Resume  </a>
+            </li>
+          
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://ashwingoel.com/about/" >About  </a>
+            </li>
+          
+          
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  
+ 
+      
+ 
+
+
+
+
+
+
+<div id="site-header" class="carousel slide carousel-fade" data-ride="carousel" style="height: 18rem;" >  
+
+  
+  
+  
+
+  
+  <div class="carousel-inner" role="listbox">
+    
+
+        
+        <div class="carousel-item active">
+          <div class="view" style="background-image: url('https://ashwingoel.com/img/header-slides/raw_1515691746.jpg'); background-repeat: no-repeat; background-size: cover; background-position: 90% 50%;filter: blur(5px);-webkit-filter: blur(5px);">
+
+            
+            <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+              
+              
+              
+
+            </div>
+            
+
+          </div>
+        </div>
+        
+      
+    
+
+  
+  </div>
+  
+
+  
+  <div class="carousel-content text-center white-text wow fadeIn">
+    <div class="row mx-0 headfont mt-3 pt-4 mb-3 pb-4">
+      
+      <div class="col-12 col-sm-5 align-middle">
+        <a href="https://ashwingoel.com">
+          
+          
+          <img class="avatar avatar-md" src="https://ashwingoel.com/img/Ashwin-Goel-profile.jpg" alt="" >
+          
+        </a>
+      </div>
+      
+      <div class="col-12 col-sm-7 text-left pl-2">
+        <a href="https://ashwingoel.com">
+          <h1 class="mb-2 h1" style="font-weight: 300;" >
+            <strong>Ashwin Goel</strong>
+          </h1>
+        </a>
+        
+
+             
+        <div class="mt-2" style="font-size: 1.3rem; color: white;">
+            
+              <a href="//github.com/goelashwin36" target="_blank" rel="noopener"><i class="fab fa-github pr-1" aria-hidden="true"></i></a>    
+            
+            
+              <a href="//linkedin.com/in/ashwingoel" target="_blank" rel="noopener"><i class="fab fa-linkedin pr-1" aria-hidden="true"></i></a>
+            
+
+            
+              <a href="//facebook.com/ashwingoel36" target="_blank" rel="noopener"><i class="fab fa-facebook pr-1" aria-hidden="true"></i></a>
+            
+
+            
+
+            
+
+            
+                <a href="//instagram.com/_ashwin_g_" target="_blank" rel="noopener"><i class="fab fa-instagram pr-1" aria-hidden="true"></i></a>
+            
+    
+            
+    
+        
+            
+                <a href="mailto:goelashwin36@gmail.com"><i class="far fa-envelope-open pr-1" aria-hidden="true"></i></a>
+            
+    
+            
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
+  
+  
+
+</div>
+  
+    
+
+    
+  
+  <main class="post-main-wrapper">
+    
+    
+    <div class="row justify-content-center">
+
+      
+      
+	
+	
+	
+	
+		
+		
+		
+	
+
+		
+		<div class="col-md-3 pl-0">
+
+			
+			<div id="page-scrollspy" class="toc-nav">
+				
+				<ul class="nav nav-pills ml-0">
+					
+					<li class="nav-item pb-3 text-center">
+						<span class="font-weight-bold mb-2">- CATALOG - </span>
+					</li>
+
+					
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#sql-injection">
+												 SQL INJECTION
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#how-to-detect-the-presence-of-sql-injection">
+												 How to detect the presence of SQL Injection?
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#how-to-exploit-using-sql-injection">
+												 How to exploit using SQL Injection
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#types-of-sql-injection">
+												 Types of SQL Injection
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#resources">
+												 Resources
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+
+				</ul>
+			</div>
+			
+
+		</div>
+		
+	
+      
+      <div class="col-md-10 col-lg-8">
+      
+
+        
+        <div class="z-depth-1  post-wrapper white-bg single-post">
+
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
+    
+      
+        <li><a href="https://ashwingoel.com/categories/a-beginners-guide-to-sql-injection"><i class="fas fa-folder-open pr-1" aria-hidden="true"></i> A Beginner’s Guide to SQL Injection </a></li>
+      
+    
+    
+  </ul>
+
+  <div class="px-4 post-heading">SQL Injection</div>
+
+  <ul class="post-meta li-x mt-1">
+    
+      <li>Jun 10, 2019</li>
+    
+
+    
+      <li class="middot"></li>
+      <li>5 minutes read</li>
+    
+  </ul>
+  
+    <div class="view">
+      <img src="https://ashwingoel.com/images/blog/sql-injection/Ashwin-Goel-Sql-Injection.jpeg" style="max-height: 600px; max-width: 600px; margin: 0px auto;"/>
+    </div>
+  
+
+</div>
+
+
+          <div class="post-content markdown">
+            
+
+<h1 id="sql-injection">SQL INJECTION</h1>
+
+<p>SQL injection is a web security vulnerability which allows an attacker to alter the SQL queries made to the database. This can be used to retrieve some sensitive information like database structure, tables, columns and their underlying data.</p>
+
+<p><strong><em>For Example:</em></strong></p>
+
+<p>Suppose an application uses the following query to fetch the login details of a person:</p>
+
+<pre><code class="language-mysql">SELECT USERNAME,PASSWORD from USERS where USERNAME='&lt;username&gt;' AND PASSWORD='&lt;password&gt;';
+</code></pre>
+
+<p>Here <code>username</code> and <code>password</code> is the input provided by the user.
+Suppose an attacker gives the input as <code>' OR '1'='1</code> in both the fields.
+Therefore, the SQL query will look like:</p>
+
+<pre><code class="language-mysql">SELECT USERNAME,PASSWORD from USERS where USERNAME='' OR '1'='1' AND PASSWORD='' OR '1'='1';
+</code></pre>
+
+<p>This query results in a true statement thus, the user gets logged in. This example depicts the most basic type of SQL injection.</p>
+
+<p>SQL injection can be used anywhere to fetch any sensitive information from the Database.</p>
+
+<p>Note: This was the most basic example and meant only for understanding purposes. You&rsquo;ll mostly not find any such cases in the real world.</p>
+
+<p>You can use this cheat sheet to see how to make queries over different SQL database providers.
+<a href="https://portswigger.net/web-security/sql-injection/cheat-sheet">SQL Injection Cheat Sheet</a></p>
+
+<h2 id="how-to-detect-the-presence-of-sql-injection">How to detect the presence of SQL Injection?</h2>
+
+<p>In most of the cases SQL Injection can be detected easily by providing invalid parameters like <code>'</code>, <code>''</code> <code>a' or 1=1--</code>, <code>&quot;a&quot;&quot; or 1=1--&quot;</code>, <code>or a = a</code>, <code>a' waitfor delay '0:0:10'--</code>, <code>1 waitfor delay '0:0:10'--</code>, <code>%26</code>, <code>' or username like '%</code> etc. and observe the changes in the behaviour of the application. You may try to analyse the length of the response from the server and also the time it takes to send the response. Payloads like: <code>'</code>, <code>a' or 1=1--</code> etc. might show changes in the response by the database server. But in case if there is no change we try to trigger time delays using payload like <code>a' waitfor delay '0:0:10'--</code> which might make the server delay for a specific time before sending a response.</p>
+
+<p>After determining if the website is vulnerable to <code>SQL Injection</code> we can try to extract some sensitive information from the database.</p>
+
+<p>Before that, we need to identify the <code>number of columns</code> the SQL Query returns. This is essential because if we try to extract unequal number of columns than what the query actually returns, then it will return an error.</p>
+
+<p>We can determine the number of columns by using the <code>order by</code> command.</p>
+
+<p>The <code>order by</code> command in <code>sql</code> is used to sort the fetched data in either ascending or descending order. On passing a <code>column number</code> to this command, it sorts the data based on that particular column number. Now if we provide an invalid column number then an <code>error</code> will be returned by sql. This can help us in knowing the number of columns a query returns.</p>
+
+<p><strong><em>For Example:</em></strong></p>
+
+<pre><code class="language-url">www.onlineshopping.com/products.php?pid=8 order by 1 -- //
+www.onlineshopping.com/products.php?pid=8 order by 2 -- //
+
+// If the parameter is a string then you need to add a ' after it.
+
+www.onlineshopping.com/products.php?usr=b' order by 3 -- //
+www.onlineshopping.com/products.php?usr=a' order by 4 -- //
+</code></pre>
+
+<p>The significance of <code>--</code> is that it&rsquo;s a comment indicator in SQL which makes the rest of the query a comment. Now to preserve the <code>space</code> after <code>--</code> we add any character after that so that <code>space</code> doesn&rsquo;t get ignored in the <code>Http request</code>. We might also use <code>#</code>, <code>/* */</code> for comments depending on the SQL database provider.</p>
+
+<p>Continue this process till you encounter an error. Suppose you encounter an error while using the payload <code>order by 5</code> and but not while using <code>order by 4</code> which means that the query returns <code>4</code> columns.</p>
+
+<h2 id="how-to-exploit-using-sql-injection">How to exploit using SQL Injection</h2>
+
+<p>Once you know that application is vulnerable to SQL Injection and you have identified the number of columns, we try to find necessary information about the database like- <code>DB name</code>, <code>DB user name</code>, <code>DB version</code>, <code>table names</code>, <code>coulumn names</code> of the required table etc.</p>
+
+<h2 id="types-of-sql-injection">Types of SQL Injection</h2>
+
+<ol>
+<li><strong>Error based</strong>: This type of SQL Injection relies on the <code>error messages</code> being thrown by the database server which might provide us some useful information regarding the database structure.</li>
+<li><strong>Union based</strong>: This techique uses the SQL <code>UNION</code> operator to combine the results of two <code>SELECT</code> queries and return a single table. It allows an attacker to extract information from other tables by appending the results to the original query made to the database.</li>
+<li><strong>Blind Injection</strong>: It happens when the application is vulnerable to <code>SQL Injection</code> but the results of the <code>SQL query</code> are not returned in the <code>HTTP response</code>. In this case we query the database for any true/false statement and see the changes for both true and false condition. It is of two types:
+
+<ol>
+<li><strong>Content-based</strong>: In this technique the database server is queried with any conditional statement and the <code>response</code> from the server is analysed for any difference while sending a <code>true</code> condition and a <code>false</code> condition.</li>
+<li><strong>Time-based</strong>: This technique relies on injecting an SQL Query that makes the database wait for a specific time based on the specified condition. The time taken by the server to send back a response determines if the query is true/false.</li>
+</ol></li>
+<li><strong>Out-of-band Injection</strong>(uncommon): This is not a very common type of <code>SQL Injection</code> as it depends on the features being enabled on the database server. It relies on the database server&rsquo;s capability to make a web request like <code>HTTP</code>, <code>DNS</code>, <code>ftp</code> to send data to the attacker.</li>
+</ol>
+
+<h2 id="resources">Resources</h2>
+
+<ol>
+<li><p>&lsquo;SQL Map&rsquo; is an open source tool which <code>automates</code> the process of <code>detecting</code> and <code>exploiting</code> SQL Injection Vulnerabilities.
+<a href="http://sqlmap.org/">SQLmap</a></p></li>
+
+<li><p>This repository has got some cool resources on <code>SQL Injection</code>. There are some cheat sheets and a lot of useful payloads which can be used depending on the use case.
+<a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection">SQL Resources</a></p></li>
+</ol>
+
+<p>We shall see in depth about the exploitation part and types of SQL Injection in the next Blog.</p>
+
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
+            
+              <div class="mb-5">
+                
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://ashwingoel.com/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://ashwingoel.com/tags/sql" role="button">Sql </a></li>
+      
+    
+      <li><a href="https://ashwingoel.com/tags/security" role="button">Security </a></li>
+      
+    
+      <li><a href="https://ashwingoel.com/tags/sql-injection" role="button">Sql Injection </a></li>
+      
+    
+  </div>
+</div>
+              </div>
+            
+            </div>
+            
+          </div>
+          
+
+          
+          <div class="row pt-3">
+            <div class="col-md-6">
+              
+            </div>
+            
+            <div class="col-md-6 text-right" >
+              
+                <a href=https://ashwingoel.com/blog/an-introduction-to-buffer-overflow/ class="post-meta">Next
+                  <div class="pt-2 pb-5 flex-reverse">
+                    <i class="fas fa-angle-right text-grey font-weight-bold ml-2 active-color"></i>
+                    <span>An Introduction to Buffer Overflow</span>
+                  </div>
+                </a>
+              
+            </div>
+          </div>
+
+          
+
+        </div>
+        
+
+      </div>
+      
+
+      
+
+    </div>
+    
+
+
+  </main>
+  
+
+
+    
+    
+
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+
+  
+  <div class="pb-2 mt-5 pt-5" style="font-size: 1.5rem">
+    
+      <a href="//github.com/goelashwin36 " target="_blank" rel="noopener"><i class="fab fa-github mr-3" aria-hidden="true"></i></a>    
+    
+    
+      <a href="//linkedin.com/in/ashwingoel" target="_blank" rel="noopener"><i class="fab fa-linkedin-in mr-3" aria-hidden="true"></i></a>
+    
+
+    
+      <a href="//facebook.com/ashwingoel36" target="_blank" rel="noopener"><i class="fab fa-facebook-f mr-3" aria-hidden="true"></i></a>
+    
+    
+    
+
+    
+        <a href="//instagram.com/_ashwin_g_" target="_blank" rel="noopener"><i class="fab fa-instagram mr-3" aria-hidden="true"></i></a>
+    
+
+    
+        <a href="mailto:goelashwin36@gmail.com"><i class="far fa-envelope-open mr-3" aria-hidden="true"></i></a>
+    
+
+    
+
+    
+
+  </div>
+  
+
+  
+  <div class="copyright py-4">
+    
+  </div>
+  
+
+</footer>
+
+
+    
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="https://ashwingoel.com/js/vendors/popper.min.js"></script>
+<script type="text/javascript" src="https://ashwingoel.com/js/vendors/holder.min.js"></script>
+<script type="text/javascript" src="https://ashwingoel.com/js/vendors-extensions/bootstrap4/bootstrap.js" ></script>
+
+<script type="text/javascript" src="https://ashwingoel.com/js/vendors/mdb/mdb.min.js"></script>
+
+<script type="text/javascript" src="https://ashwingoel.com/js/main.js"></script>
+
+
+
+  
+  <script src="https://ashwingoel.com/js/vendors/highlight.pack.js"> </script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+ 
+  <script src="https://ashwingoel.com/js/vendors/katex/katex.min.js"> </script>
+  <script src="https://ashwingoel.com/js/vendors/katex/contrib/auto-render.min.js"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          renderMathInElement(document.body);
+      });
+  </script>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+  
+  new WOW().init();
+</script>
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sql Injection on Ashwin Goel</title>
+    <link>https://ashwingoel.com/categories/sql-injection/</link>
+    <description>Recent content in Sql Injection on Ashwin Goel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zn-Hans</language>
+    <lastBuildDate>Mon, 10 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://ashwingoel.com/categories/sql-injection/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SQL Injection</title>
+      <link>https://ashwingoel.com/blog/sql-injection/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ashwingoel.com/blog/sql-injection/</guid>
+      <description>SQL INJECTION SQL injection is a web security vulnerability which allows an attacker to alter the SQL queries made to the database. This can be used to retrieve some sensitive information like database structure, tables, columns and their underlying data.
+For Example:
+Suppose an application uses the following query to fetch the login details of a person:
+SELECT USERNAME,PASSWORD from USERS where USERNAME=&#39;&amp;lt;username&amp;gt;&#39; AND PASSWORD=&#39;&amp;lt;password&amp;gt;&#39;;  Here username and password is the input provided by the user. Suppose an attacker gives the input as &#39; OR &#39;1&#39;=&#39;1 in both the fields. Therefore, the SQL query will look like:
+SELECT USERNAME,PASSWORD from USERS where USERNAME=&#39;&#39; OR &#39;1&#39;=&#39;1&#39; AND PASSWORD=&#39;&#39; OR &#39;1&#39;=&#39;1&#39;;  This query results in a true statement thus, the user gets logged in. This example depicts the most basic type of SQL injection.
+SQL injection can be used anywhere to fetch any sensitive information from the Database.
+Note: This was the most basic example and meant only for understanding purposes. You&amp;rsquo;ll mostly not find any such cases in the real world.
+You can use this cheat sheet to see how to make queries over different SQL database providers. SQL Injection Cheat Sheet
+How to detect the presence of SQL Injection?</description>
+    </item>
+    
+  </channel>
+</rss>

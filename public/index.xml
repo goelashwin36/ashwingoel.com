@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ashwin Goel</title>
+    <link>https://ashwingoel.com/</link>
+    <description>Recent content on Ashwin Goel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zn-Hans</language>
+    <lastBuildDate>Mon, 22 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://ashwingoel.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Buffer Overflow</title>
+      <link>https://ashwingoel.com/blog/buffer-overflow/</link>
+      <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ashwingoel.com/blog/buffer-overflow/</guid>
+      <description>Buffer A Buffer is temporary storage usually present in the physical memory used to hold data.
+Consider the most useless program ever made shown on the left image where a character buffer of length 5 is defined. In a big cluster of memory, a small memory of 5 bytes would be assigned to the buffer which looks like the image on the right.
+Buffer Overflow A Buffer Overflow occurs when more data is written to a specific length of memory such that adjacent memory addresses are overwritten.
+DEMO(Controlling Local Variables):
+Let&amp;rsquo;s take an example of a basic authentication app which asks for a password and returns Authenticated! if the password is correct.
+Without really knowing how the app works, let&amp;rsquo;s enter a random password.
+It says Authentical Declined since the password wasn&amp;rsquo;t correct. To test buffer overflow, we need to enter large random data.
+You must be wondering why it got authenticated and why there is a Segmentation Fault!. Let&amp;rsquo;s see a more detailed version of the app. As you can see, there are three variables: auth, sys_pass, and usr_pass. The auth variable determines if the user is authenticated or not depending on the value(initially 0). The usr_pass stores the password that the user enters and the sys_pass variable is what the correct password is.</description>
+    </item>
+    
+    <item>
+      <title>SQL Injection</title>
+      <link>https://ashwingoel.com/blog/sql-injection/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ashwingoel.com/blog/sql-injection/</guid>
+      <description>SQL INJECTION SQL injection is a web security vulnerability which allows an attacker to alter the SQL queries made to the database. This can be used to retrieve some sensitive information like database structure, tables, columns and their underlying data.
+For Example:
+Suppose an application uses the following query to fetch the login details of a person:
+SELECT USERNAME,PASSWORD from USERS where USERNAME=&#39;&amp;lt;username&amp;gt;&#39; AND PASSWORD=&#39;&amp;lt;password&amp;gt;&#39;;  Here username and password is the input provided by the user. Suppose an attacker gives the input as &#39; OR &#39;1&#39;=&#39;1 in both the fields. Therefore, the SQL query will look like:
+SELECT USERNAME,PASSWORD from USERS where USERNAME=&#39;&#39; OR &#39;1&#39;=&#39;1&#39; AND PASSWORD=&#39;&#39; OR &#39;1&#39;=&#39;1&#39;;  This query results in a true statement thus, the user gets logged in. This example depicts the most basic type of SQL injection.
+SQL injection can be used anywhere to fetch any sensitive information from the Database.
+Note: This was the most basic example and meant only for understanding purposes. You&amp;rsquo;ll mostly not find any such cases in the real world.
+You can use this cheat sheet to see how to make queries over different SQL database providers. SQL Injection Cheat Sheet
+How to detect the presence of SQL Injection?</description>
+    </item>
+    
+  </channel>
+</rss>

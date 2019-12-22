@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="zn-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
+    
+    <meta name="author" content="Ashwin Goel">
+    <meta name="description" content="Ashwin Goel. Aspiring Cyber-Security professional. Web-Developer by passion.">
+    <meta name="keywords" content="Ashwin,Goel,Security,Cyber-Security,Web,Developer,Web-Developer, Ashwin Goel">
+
+
+    <meta property="og:title" content="Buffer Overflow" />
+<meta property="og:description" content="Buffer A Buffer is temporary storage usually present in the physical memory used to hold data.
+Consider the most useless program ever made shown on the left image where a character buffer of length 5 is defined. In a big cluster of memory, a small memory of 5 bytes would be assigned to the buffer which looks like the image on the right.
+Buffer Overflow A Buffer Overflow occurs when more data is written to a specific length of memory such that adjacent memory addresses are overwritten.
+DEMO(Controlling Local Variables):
+Let&rsquo;s take an example of a basic authentication app which asks for a password and returns Authenticated! if the password is correct.
+Without really knowing how the app works, let&rsquo;s enter a random password.
+It says Authentical Declined since the password wasn&rsquo;t correct. To test buffer overflow, we need to enter large random data.
+You must be wondering why it got authenticated and why there is a Segmentation Fault!. Let&rsquo;s see a more detailed version of the app. As you can see, there are three variables: auth, sys_pass, and usr_pass. The auth variable determines if the user is authenticated or not depending on the value(initially 0). The usr_pass stores the password that the user enters and the sys_pass variable is what the correct password is." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ashwingoel.com/blog/buffer-overflow/" />
+
+
+
+<meta property="article:published_time" content="2019-07-22T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2019-07-22T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+    <title>
+        Ashwin Goel
+    </title>
+
+    <link rel="canonical" href="https://ashwingoel.com/blog/buffer-overflow/">
+
+    
+    
+
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140853249-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-140853249-1');
+    </script>
+
+
+    
+    <link href="https://ashwingoel.com/css/vendors-extensions/fontawesome/all.min.css" rel="stylesheet">
+
+    
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:300,400,500,600">
+    <link href="https://ashwingoel.com/css/font.css" rel="stylesheet">
+
+    
+    <link href="https://ashwingoel.com/css/vendors/bootstrap4/bootstrap.min.css" rel="stylesheet">
+    <link href="https://ashwingoel.com/css/vendors-extensions/mdb/mdb.min.css" rel="stylesheet">
+    <link href="https://ashwingoel.com/css/vendors/mdb/style.min.css" rel="stylesheet">
+    <link href="https://ashwingoel.com/css/main.css" rel="stylesheet">
+
+
+    
+    <link rel="shortcut icon"  href="https://ashwingoel.com/img/Ashwin-Goel-logo.jpg"
+        >
+
+
+    
+    
+    <style type="text/css">
+        @media (min-width: 800px) and (max-width: 850px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #1C2331 !important;
+            }
+        }
+    </style>
+
+
+    
+    
+    <link rel="stylesheet" href="https://ashwingoel.com/js/vendors/katex/katex.min.css">
+    
+    
+
+    
+    
+    <link rel="stylesheet" href="https://ashwingoel.com/css/vendors/highlight/github-gist.css">
+    
+
+    
+<script type="text/javascript" src="https://ashwingoel.com/js/vendors/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://ashwingoel.com/js/vendors/jquery/jquery.smooth-scroll.min.js"></script>
+
+<script>
+    
+    $(window).ready(function () {
+      $('#loader').delay(1000).fadeOut(350);
+    });
+  </script>
+</head>
+  <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
+  
+    
+    
+
+    
+      
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      
+      <a class="navbar-brand" href="https://ashwingoel.com">
+          
+        <img class="avatar" src="https://ashwingoel.com/img/Ashwin-Goel-logo.jpg" style="width: 40px!important;height: auto;"  class="d-inline-block align-top" alt="" >
+        
+        <strong> Ashwin Goel</strong>
+      </a>
+
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item ">
+            <a class="nav-link" href="https://ashwingoel.com">Home</a>
+          </li>
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://ashwingoel.com/blog/" >Blog  </a>
+            </li>
+          
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://ashwingoel.com/about/" >About  </a>
+            </li>
+          
+          
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  
+ 
+      
+ 
+
+
+
+
+
+
+<div id="site-header" class="carousel slide carousel-fade" data-ride="carousel" style="height: 18rem;" >  
+
+  
+  
+  
+
+  
+  <div class="carousel-inner" role="listbox">
+    
+
+        
+        <div class="carousel-item active">
+          <div class="view" style="background-image: url('https://ashwingoel.com/img/header-slides/raw_1515691746.jpg'); background-repeat: no-repeat; background-size: cover; background-position: 90% 50%;filter: blur(5px);-webkit-filter: blur(5px);">
+
+            
+            <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+              
+              
+              
+
+            </div>
+            
+
+          </div>
+        </div>
+        
+      
+    
+
+  
+  </div>
+  
+
+  
+  <div class="carousel-content text-center white-text wow fadeIn">
+    <div class="row mx-0 headfont mt-3 pt-4 mb-3 pb-4">
+      
+      <div class="col-12 col-sm-5 align-middle">
+        <a href="https://ashwingoel.com">
+          
+          
+          <img class="avatar avatar-md" src="https://ashwingoel.com/img/Ashwin-Goel-profile.jpg" alt="" >
+          
+        </a>
+      </div>
+      
+      <div class="col-12 col-sm-7 text-left pl-2">
+        <a href="https://ashwingoel.com">
+          <h1 class="mb-2 h1" style="font-weight: 300;" >
+            <strong>Ashwin Goel</strong>
+          </h1>
+        </a>
+        
+
+             
+        <div class="mt-2" style="font-size: 1.3rem; color: white;">
+            
+              <a href="//github.com/goelashwin36" target="_blank" rel="noopener"><i class="fab fa-github pr-1" aria-hidden="true"></i></a>    
+            
+            
+              <a href="//linkedin.com/in/ashwingoel" target="_blank" rel="noopener"><i class="fab fa-linkedin pr-1" aria-hidden="true"></i></a>
+            
+
+            
+              <a href="//facebook.com/ashwingoel36" target="_blank" rel="noopener"><i class="fab fa-facebook pr-1" aria-hidden="true"></i></a>
+            
+
+            
+
+            
+
+            
+                <a href="//instagram.com/_ashwin_g_" target="_blank" rel="noopener"><i class="fab fa-instagram pr-1" aria-hidden="true"></i></a>
+            
+    
+            
+    
+        
+            
+                <a href="mailto:goelashwin36@gmail.com"><i class="far fa-envelope-open pr-1" aria-hidden="true"></i></a>
+            
+    
+            
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
+  
+  
+
+</div>
+  
+    
+
+    
+  
+  <main class="post-main-wrapper">
+    
+    
+    <div class="row justify-content-center">
+
+      
+      
+	
+	
+	
+	
+		
+		
+		
+	
+
+		
+		<div class="col-md-3 pl-0">
+
+			
+			<div id="page-scrollspy" class="toc-nav">
+				
+				<ul class="nav nav-pills ml-0">
+					
+					<li class="nav-item pb-3 text-center">
+						<span class="font-weight-bold mb-2">- CATALOG - </span>
+					</li>
+
+					
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#buffer">
+												 Buffer
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#buffer-overflow">
+												 Buffer Overflow
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#important-concepts">
+												 Important Concepts
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#division-of-memory-for-a-running-process">
+												 Division of Memory for a Running Process
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#stack-layout">
+												 Stack Layout
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#exploiting-buffer-overflow">
+												 Exploiting Buffer Overflow
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#security-measures">
+												 Security Measures
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#references">
+												 References
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+						
+						
+							
+								
+								
+									<ul class="nav">
+								
+								
+
+										<li class="nav-item">
+						 					<a class="nav-link" href="#acknowledgement">
+												 Acknowledgement
+											</a>
+										</li>
+						 
+								
+								
+									</ul>
+								
+							
+						
+				 
+
+				</ul>
+			</div>
+			
+
+		</div>
+		
+	
+      
+      <div class="col-md-10 col-lg-8">
+      
+
+        
+        <div class="z-depth-1  post-wrapper white-bg single-post">
+
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
+    
+      
+        <li><a href="https://ashwingoel.com/categories/buffer-overflow"><i class="fas fa-folder-open pr-1" aria-hidden="true"></i> Buffer Overflow </a></li>
+      
+    
+    
+  </ul>
+
+  <div class="px-4 post-heading">Buffer Overflow</div>
+
+  <ul class="post-meta li-x mt-1">
+    
+      <li>Jul 22, 2019</li>
+    
+
+    
+      <li class="middot"></li>
+      <li>6 minutes read</li>
+    
+  </ul>
+  
+    <div class="view">
+      <img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b0.png" style="max-height: 600px; max-width: 600px; margin: 0px auto;"/>
+    </div>
+  
+
+</div>
+
+
+          <div class="post-content markdown">
+            
+
+<h2 id="buffer">Buffer</h2>
+
+<p>A <code>Buffer</code> is temporary storage usually present in the physical memory used to hold data.</p>
+
+<p><img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b1.png" style=" max-height: 500px;"></p>
+
+<p>Consider the most useless program ever made shown on the left image where a character buffer of length 5 is defined. In a big cluster of memory, a small memory of 5 bytes would be assigned to the buffer which looks like the image on the right.</p>
+
+<h2 id="buffer-overflow">Buffer Overflow</h2>
+
+<p>A <code>Buffer Overflow</code> occurs when more data is written to a specific length of memory such that adjacent memory addresses are overwritten.</p>
+
+<p><strong><em>DEMO(Controlling Local Variables):</em></strong></p>
+
+<p>Let&rsquo;s take an example of a basic authentication app which asks for a password and returns <code>Authenticated!</code> if the password is correct.</p>
+
+<p>Without really knowing how the app works, let&rsquo;s enter a random password.</p>
+
+<p><img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b2-1.png" style=" max-height: 500px;  "></p>
+
+<p>It says <code>Authentical Declined</code> since the password wasn&rsquo;t correct. To test <code>buffer overflow</code>, we need to enter large random data.</p>
+
+<p><img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b2-2.png" style=" max-height: 500px;  "></p>
+
+<p>You must be wondering why it got authenticated and why there is a <code>Segmentation Fault!</code>. Let&rsquo;s see a more detailed version of the app.
+<img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b3-1.png" style=" max-height: 500px;"></p>
+
+<p>As you can see, there are three variables: <code>auth</code>, <code>sys_pass</code>, and <code>usr_pass</code>.
+The <code>auth</code> variable determines if the user is authenticated or not depending on the value(initially 0). The <code>usr_pass</code> stores the password that the user enters and the <code>sys_pass</code> variable is what the correct password is.</p>
+
+<p>How the app works is if the  <code>usr_pass</code> variable is equal to <code>sys_pass</code> then the <code>auth</code> variable becomes <code>1</code>. If the <code>auth</code> variable is not <code>0</code>, then the user is authenticated.</p>
+
+<p>You may also see how the variables are stored in memory. Since the address is in <code>hexadecimal</code> and there is a difference of 1 therefore, <code>usr_pass</code> and <code>sys_pass</code> variables are buffers of length 16.</p>
+
+<p>To test for Buffer Overflow, a long password is entered as shown.</p>
+
+<p><img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b3-2.png" style=" max-height: 500px;"></p>
+
+<p>As you can see the password entered in <code>usr_pass</code> variable overflows the <code>sys_pass</code> variable and then the <code>auth</code> variable.</p>
+
+<p><strong><em>Note</em></strong>: C functions like <code>strcpy()</code>, <code>strcmp()</code>, <code>strcat()</code> do not check the length of the variable and can overwrite later memory addresses which is what precisely buffer overflow is.</p>
+
+<p>Refer to the code below for better understanding.</p>
+
+<pre><code class="language-cpp">#include &lt;stdio.h&gt;
+
+int main(void) {
+
+    int auth = 0;
+    char sys_pass[16] = &quot;Secret&quot;;
+    char usr_pass[16];
+
+    printf(&quot;Enter password: &quot;);
+    scanf(&quot;%s&quot;, usr_pass);
+
+    if (strcmp(sys_pass, usr_pass) == 0) {
+        authorized = 1;
+    }
+
+    printf(&quot;usr_pass: %s\n&quot;, usr_pass);
+    printf(&quot;sys_pass: %s\n&quot;, sys_pass);
+    printf(&quot;auth: %d\n&quot;, authorized);
+    printf(&quot;sys_pass   addr: %p\n&quot;, (void *)sys_pass);
+    printf(&quot;auth       addr: %p\n&quot;, (void *)&amp;authorized);
+
+    if (auth) {
+        printf(&quot;Authenticated!\n&quot;);
+    }
+    else{
+        printf(&quot;Authentication declined!\n&quot;);
+        }
+}
+
+</code></pre>
+
+<p><strong><em>Note</em></strong>: This might be the most unrealistic example and only meant for understanding purposes. You may not see such situations in real life.</p>
+
+<p>Let&rsquo;s dive a little deeper into the concepts now.</p>
+
+<h2 id="important-concepts">Important Concepts</h2>
+
+<h3 id="division-of-memory-for-a-running-process">Division of Memory for a Running Process</h3>
+
+<p><img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b4.png" style=" max-height: 500px;">
+Source: <a href="https://kotharitechnotrick.wordpress.com/2013/12/26/memory-mapping-in-c/">Link</a></p>
+
+<p>This is how the <code>memory</code> assigned to a <code>process</code> looks like. There are various sections like <code>stack</code>, <code>heap</code>, <code>Uninitialized data</code> etc. used for different purposes.</p>
+
+<p>You may read more about the memory layout here: <a href="https://www.thegeekstuff.com/2012/03/linux-processes-memory-layout/">Memory Layout of a Process.</a></p>
+
+<p>This blog focuses on <code>Buffer Overflow</code> in <code>Stack</code> so let&rsquo;s look at that.</p>
+
+<ol>
+<li><strong>Stack</strong>: A LIFO data structure extensively used by computers in Memory management etc.</li>
+<li>There are a bunch of registers present in the memory amongst which we shall only be concerned about EIP, EBP, ESP.</li>
+<li><strong>EBP</strong>: It&rsquo;s a stack pointer which points to the base of the stack.</li>
+<li><strong>ESP</strong>: It&rsquo;s a stack pointer which points to the top of the stack.
+<img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b5.png" style=" max-height: 500px;"></li>
+<li><strong>EIP</strong>: It contains the address of the next instruction to be executed.
+<img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b6.png" style=" max-height: 500px;"></li>
+</ol>
+
+<h3 id="stack-layout">Stack Layout</h3>
+
+<p><img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b7.png" style=" max-height: 500px;"></p>
+
+<p>The above image shows how a <code>stack</code> looks like. It might look intimidating but trust me, it isn&rsquo;t. Let&rsquo;s see some important points related to the stack</p>
+
+<ul>
+<li>A stack is filled from higher memory to lower memory.</li>
+<li>In a stack, all the variables are accessed relative to the EBP.</li>
+<li>In a program, every function has its own stack.</li>
+
+<li><p>Everything is referenced from the EBP register.
+<img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b8.png" style=" max-height: 500px;"> Source: <a href="https://itandsecuritystuffs.wordpress.com/2014/03/18/understanding-buffer-overflows-attacks-part-1/">Link</a></p></li>
+
+<li><p>Above the EBP, <code>function parameters</code> are stored.</p>
+
+<p><em><strong>For example:</strong></em></p></li>
+</ul>
+
+<pre><code class="language-cpp">   void foo(int a, int b, int c){
+      //Function body
+   }
+</code></pre>
+
+<p>Here <code>a</code>,<code>b</code> and <code>c</code> being the function parameters are stored above the EBP.</p>
+
+<ul>
+<li>All the <code>local variables</code> of a function are stored below the EBP.</li>
+<li>The <code>Old %ebp</code> is the value of the EBP of the previous function. Since after a function is executed, it has to return back to an older function; therefore, we need to store the values of both old EBP and EIP.</li>
+
+<li><p>ESP register stores address of the bottom of the stack.</p>
+
+<p><em><strong>For example:</strong></em></p></li>
+</ul>
+
+<pre><code class="language-cpp">   void foo(int a, int b, int c){
+       int x;
+       int y;
+       int z;
+   }
+</code></pre>
+
+<p>Here <code>x</code>,<code>y</code>,<code>z</code> being local variables to the function are stored below the EBP.</p>
+
+<h2 id="exploiting-buffer-overflow">Exploiting Buffer Overflow</h2>
+
+<p>It&rsquo;s time to get into Buffer Overflow exploitation using stack.</p>
+
+<p>Before that, let&rsquo;s try to understand how a stack is built for any function.</p>
+
+<p>Taking an example below:</p>
+
+<p><img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b9.png" style=" max-height: 500px;"></p>
+
+<p>The <code>stack</code> on the right is of the <code>function foo</code> as seen on the left image.</p>
+
+<ul>
+<li>Since <code>a</code>,<code>b</code> and <code>c</code> are <code>parameters</code> passed to the function, therefore, it is stored above the EBP. Also because the stack is filled from higher to lower memory and parameters are read from right to left, therefore, <code>c</code> is written first in the memory followed by <code>b</code> and <code>a</code>.</li>
+<li><code>x</code>,<code>y</code> and <code>z</code> being the local variables are stored below the EBP.</li>
+<li>It is also required to store the <code>Old EIP</code> and <code>Old EBP</code> of the <code>function main</code> in the stack to know where to return after the function executes.</li>
+</ul>
+
+<p>Now, as shown in the <code>previous demo</code>, you could see how Buffer Overflow took place using the local variables.</p>
+
+<p><img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b10.png" style=" max-height: 500px;">
+Source: <a href="https://www.securitysift.com/windows-exploit-development-part-2-intro-stack-overflow/">Link</a></p>
+
+<p>Imagine a situation where you <code>overflow</code> the variables <code>x</code>,<code>y</code> and <code>z</code> in such a way that Old EIP is modified and stores the address of the memory where the <code>malicious code</code> is placed.</p>
+
+<p>Refer to the below image for better understanding.</p>
+
+<p><img src="https://ashwingoel.com/images/blog/buffer-overflow/Ashwin-Goel-b11.png" style=" max-height: 500px;"></p>
+
+<p>Assume a <code>buffer</code> of length 500 defined in a function. Now it is overflowed in such a way that it has some <code>random data</code>, followed by the <code>shellcode</code>(malicious code) and then the <code>Return address</code> which points to the shellcode.</p>
+
+<p>So after the function gets executed, the instruction pointed by the <code>Return address</code> gets executed and this is how our shellcode gets executed.</p>
+
+<p>This is pretty much how Buffer Overflow happens.</p>
+
+<p>You must watch this video <a href="https://www.youtube.com/watch?v=1S0aBV-Waeo">Buffer Overflow Attack - Computerphile</a> to get a more realistic idea of Buffer Overflow.
+The <code>codes</code> used in the above video are present <a href="https://gist.github.com/apolloclark/6cffb33f179cc9162d0a">here</a>.</p>
+
+<h2 id="security-measures">Security Measures</h2>
+
+<ul>
+<li>Use programming languages like Python, Java, Ruby in which <code>Dynamic Memory Allocation</code> takes place and, the language itself manages the memory for you.</li>
+<li>In languages like C, C++ before writing data to a buffer perform all the relevant checks and <code>input validation</code>.</li>
+<li>Before using any <code>external libraries</code>, check for <code>security vulnerabilities</code> in it.</li>
+<li>Use <code>source code analysis tools</code> for static analysis against vulnerabilities.</li>
+<li>Use <code>Non-executable Stack</code>: It means that even if a machine code is injected in the stack, it cannot be executed since that particular region of memory is non-executable. It is done by setting up <code>NX</code> bit.</li>
+</ul>
+
+<p><strong><em>Note</em></strong>: Even after these measures are taken it might be possible to exploit Buffer Overflow. Therefore, these are just layers of security which can help to prevent exploitation of Buffer Overflow.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li><a href="https://insecure.org/stf/smashstack.html">Smashing The Stack For Fun And Profit</a></li>
+<li><a href="http://homes.sice.indiana.edu/yh33/Teaching/I433-2016/lec11-more-bo.pdf">Buffer Overflow Exploits and Countermeasures</a></li>
+<li><a href="http://www.cis.syr.edu/~wedu/Teaching/IntrCompSec/LectureNotes_New/Buffer_Overflow.pdf">Buffer-Overflow Vulnerabilities and Attacks</a></li>
+</ul>
+
+<h2 id="acknowledgement">Acknowledgement</h2>
+
+<p>This blog is based upon a <a href="https://null.co.in/events/603-bangalore-null-bangalore-meet-22-june-2019-null-bangalore-meet-22-june-2019-null-owasp-g4h-combined-monthly-meet">talk</a> given by me at the <a href="https://null.co.in">null</a> monthly meet on <code>22nd June 2019</code>. A big thanks to <a href="https://null.co.in/profile/9454-riddhi-shree">Riddhi Shree</a> for helping me out with the talk and providing me with appropriate resources. Without her that talk might have not been as good as it was.</p>
+
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
+            
+              <div class="mb-5">
+                
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://ashwingoel.com/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://ashwingoel.com/tags/buffer" role="button">Buffer </a></li>
+      
+    
+      <li><a href="https://ashwingoel.com/tags/security" role="button">security </a></li>
+      
+    
+      <li><a href="https://ashwingoel.com/tags/buffer-overflow" role="button">Buffer Overflow </a></li>
+      
+    
+  </div>
+</div>
+              </div>
+            
+            </div>
+            
+          </div>
+          
+
+          
+          <div class="row pt-3">
+            <div class="col-md-6">
+              
+                <a href=https://ashwingoel.com/blog/sql-injection/ class="post-meta">Previous
+                  <div class="pt-2 pb-5 d-flex">
+                    <i class="fas fa-angle-left text-grey font-weight-bold mr-2 active-color"></i>
+                    <span>SQL Injection</span>
+                  </div>
+                </a>
+              
+            </div>
+            
+            <div class="col-md-6 text-right" >
+              
+            </div>
+          </div>
+
+          
+
+        </div>
+        
+
+      </div>
+      
+
+      
+
+    </div>
+    
+
+
+  </main>
+  
+
+
+    
+    
+
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+
+  
+  <div class="pb-2 mt-5 pt-5" style="font-size: 1.5rem">
+    
+      <a href="//github.com/goelashwin36 " target="_blank" rel="noopener"><i class="fab fa-github mr-3" aria-hidden="true"></i></a>    
+    
+    
+      <a href="//linkedin.com/in/ashwingoel" target="_blank" rel="noopener"><i class="fab fa-linkedin-in mr-3" aria-hidden="true"></i></a>
+    
+
+    
+      <a href="//facebook.com/ashwingoel36" target="_blank" rel="noopener"><i class="fab fa-facebook-f mr-3" aria-hidden="true"></i></a>
+    
+    
+    
+
+    
+        <a href="//instagram.com/_ashwin_g_" target="_blank" rel="noopener"><i class="fab fa-instagram mr-3" aria-hidden="true"></i></a>
+    
+
+    
+        <a href="mailto:goelashwin36@gmail.com"><i class="far fa-envelope-open mr-3" aria-hidden="true"></i></a>
+    
+
+    
+
+    
+
+  </div>
+  
+
+  
+  <div class="copyright py-4">
+    
+  </div>
+  
+
+</footer>
+
+
+    
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="https://ashwingoel.com/js/vendors/popper.min.js"></script>
+<script type="text/javascript" src="https://ashwingoel.com/js/vendors/holder.min.js"></script>
+<script type="text/javascript" src="https://ashwingoel.com/js/vendors-extensions/bootstrap4/bootstrap.js" ></script>
+
+<script type="text/javascript" src="https://ashwingoel.com/js/vendors/mdb/mdb.min.js"></script>
+
+<script type="text/javascript" src="https://ashwingoel.com/js/main.js"></script>
+
+
+
+  
+  <script src="https://ashwingoel.com/js/vendors/highlight.pack.js"> </script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+ 
+  <script src="https://ashwingoel.com/js/vendors/katex/katex.min.js"> </script>
+  <script src="https://ashwingoel.com/js/vendors/katex/contrib/auto-render.min.js"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          renderMathInElement(document.body);
+      });
+  </script>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+  
+  new WOW().init();
+</script>
+
+
+
+
+  </body>
+</html>

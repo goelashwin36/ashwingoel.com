@@ -1,10 +1,10 @@
 ---
 date: "2019-07-22T00:00:00+00:00"
 publishdate: "2019-07-22+08:00"
-lastmod: "2019-07-22+08:00"
+lastmod: "2019-12-02+08:00"
 draft: false
-title: "Buffer Overflow"
-tags: ["Buffer", "security", "Buffer Overflow"]
+title: "An Introduction to Buffer Overflow"
+tags: ["Buffer", "Security", "Buffer Overflow"]
 categories: ["Buffer Overflow"]
 img: "images/blog/buffer-overflow/Ashwin-Goel-b0.png"
 toc: true

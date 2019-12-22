@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Ashwin Goel</title>
+    <link>https://ashwingoel.com/tags/</link>
+    <description>Recent content in Tags on Ashwin Goel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zn-Hans</language>
+    <lastBuildDate>Mon, 22 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://ashwingoel.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Buffer</title>
+      <link>https://ashwingoel.com/tags/buffer/</link>
+      <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ashwingoel.com/tags/buffer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Buffer Overflow</title>
+      <link>https://ashwingoel.com/tags/buffer-overflow/</link>
+      <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ashwingoel.com/tags/buffer-overflow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>https://ashwingoel.com/tags/security/</link>
+      <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ashwingoel.com/tags/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sql</title>
+      <link>https://ashwingoel.com/tags/sql/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ashwingoel.com/tags/sql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sql Injection</title>
+      <link>https://ashwingoel.com/tags/sql-injection/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ashwingoel.com/tags/sql-injection/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

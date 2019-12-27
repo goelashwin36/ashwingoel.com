@@ -3,10 +3,10 @@ date: "2019-06-10T00:00:00+00:00"
 publishdate: "2019-06-10+08:00"
 lastmod: "2019-06-10+08:00"
 draft: false
-title: "SQL Injection"
+title: "A Beginner’s Guide to SQL Injection"
 tags: ["Sql", "Security", "Sql Injection"]
 # series: ["SQL Injection"]
-categories: ["A Beginner’s Guide to SQL Injection"]
+categories: ["SQL Injection"]
 img: "images/blog/sql-injection/Ashwin-Goel-Sql-Injection.jpeg"
 toc: true
 summary: "SQL injection is a web security vulnerability which allows an attacker to alter the SQL queries made to the database. This may lead to disclosure of sensitive datas to the attacker."

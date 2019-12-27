@@ -2,13 +2,13 @@
 date: "2019-12-02T00:00:00+00:00"
 publishdate: "2019-12-02+08:00"
 lastmod: "2019-12-02+08:00"
-draft: true
+draft: false
 title: "A Comprehensive Guide to Creating Your First React App"
 tags: ["React", "Javascript"]
-categories: ["Buffer Overflow"]
+categories: ["Javascript"]
 img: "images/blog/react/Ashwin-Goel-0.png"
 toc: true
-summary: "Buffer Overflow occurs when more data is written to a specific length of memory such that adjacent memory addresses are overwritten."
+summary: "React is a modular Javascript library created by Facebook which helps to make web apps fast and efficient with minimal coding."
 ---
 
 
@@ -70,14 +70,16 @@ Precisely JSX is an XML/HTML like syntax. It adds XML/HTML syntax to Javascript.
 
 ### Types of Components
 
-1. **Functional components(Stateless)**<br>
+- **Functional components(Stateless)**<br>
+
    These components are purely presentational(No Functionality, Only output UI items) and can simply be represented by a function. It doesn't have a state.
 
    ```jsx
     const Greeting = () => <h1>Hi, I’m a dumb component!</h1>;
    ```
 
-2. **Class Components(Stateful)**<br>
+- **Class Components(Stateful)**<br>
+
    These components are implemented using a class and have the capability to apply logics, hold state and render accordingly.
 
    ```jsx
@@ -105,13 +107,13 @@ Open cmd/terminal and move into the cloned GitHub repository.
 
 #### Docker
 
-1. Build the `Dockerfile`
+- Build the `Dockerfile`
 
    ```bash
    docker build -t reactapp:v1
    ```
 
-2. Run `Docker Image`
+- Run `Docker Image`
 
    ```bash
    docker run -v ${PWD}:/app -v /app/node_modules -p 3001:3000 --rm reactapp:v1
@@ -119,16 +121,16 @@ Open cmd/terminal and move into the cloned GitHub repository.
 
 #### Without Docker
 
-1. For this, you need to have `npm` installed. If you have it, skip the first step.<br>
+- For this, you need to have `npm` installed. If you have it, skip the first step.<br>
 Download and install it from the [official website](https://nodejs.org/en/).
 
-2. Install all the node modules necessary to run the application:
+- Install all the node modules necessary to run the application:
 
    ```bash
    npm install
    ```
 
-3. Start the React server
+- Start the React server
 
    ```bash
    npm start
@@ -137,9 +139,9 @@ Download and install it from the [official website](https://nodejs.org/en/).
 
 ### 2. Fresh Install
 
-1. You would need to have `npm` for this step. Download and install it from the [official website](https://nodejs.org/en/).
+- You would need to have `npm` for this step. Download and install it from the [official website](https://nodejs.org/en/).
 
-2. `Create-react-app`: 2. Create-react-app: Create React App is an officially supported way to create single-page React applications. It's one of the NPM packages which generates a basic React app. Configuring a React App manually is a tedious task. If you’re still interested in manual installation, follow these [instructions](https://www.valentinog.com/blog/babel/).
+- `Create-react-app`: 2. Create-react-app: Create React App is an officially supported way to create single-page React applications. It's one of the NPM packages which generates a basic React app. Configuring a React App manually is a tedious task. If you’re still interested in manual installation, follow these [instructions](https://www.valentinog.com/blog/babel/).
 
    ```bash
    # Generates a sample react app
@@ -147,7 +149,7 @@ Download and install it from the [official website](https://nodejs.org/en/).
   
    ```
 
-3. `Reactstrap`: NPM library which is like `Bootstrap` for `React`.     It makes the app look modular and makes it responsive.
+- `Reactstrap`: NPM library which is like `Bootstrap` for `React`.     It makes the app look modular and makes it responsive.
 
    ```bash
    # Installing reactstrap
@@ -156,7 +158,7 @@ Download and install it from the [official website](https://nodejs.org/en/).
    npm install --save reactstrap react react-dom
    ```
 
-4. In the `src` directory, create a folder named `assets` and in that create another folder named `images`. Add any five images, named 1.jpg, `2.jpg` ... `5.jpg`.
+- In the `src` directory, create a folder named `assets` and in that create another folder named `images`. Add any five images, named 1.jpg, `2.jpg` ... `5.jpg`.
 
 **Note that** `VS code` is one of the most powerful and lightweight source code editors and is available for Windows, macOS, and Linux. Download it from the [official website](https://code.visualstudio.com/#meet-intellisense).
 
@@ -164,10 +166,10 @@ Download and install it from the [official website](https://nodejs.org/en/).
 
 The time has come when we’re ready with the basic knowledge and can dive into the implementation.
 
-1. It's always a good practice to add all the `components` in the `components folder` in the `src` directory.
-   1. Open the project in VSCode.
-   2. Add a folder `components` in the `src` directory.
-   3. Create a file `products.js` in the `components` folder.<br>
+- It's always a good practice to add all the `components` in the `components folder` in the `src` directory.
+   - Open the project in VSCode.
+   - Add a folder `components` in the `src` directory.
+   - Create a file `products.js` in the `components` folder.<br>
    The directory should look like this:
 
    ```bash
@@ -192,7 +194,7 @@ The time has come when we’re ready with the basic knowledge and can dive into 
 
    ```
 
-2. The basic structure of a class based component looks like this:
+- The basic structure of a class based component looks like this:
    Copy this and paste it into the `products.js` file.<br>
 
    ```jsx
@@ -224,7 +226,7 @@ The time has come when we’re ready with the basic knowledge and can dive into 
    export default className;
    ```
 
-3. Now we have created a `component` which prints `Hello World!`.<br>
+- Now we have created a `component` which prints `Hello World!`.<br>
    To make sure this component is rendered, open `app.js` file in `src` directory.<br>
    Copy this code and paste it there after deleting the previous code.
 
@@ -246,13 +248,15 @@ The time has come when we’re ready with the basic knowledge and can dive into 
    ```
 
    Here we are just importing the `Products` as a component from the `products.js` file and rendering it using `<Products />`.<br>
-4. Let's test the app.<br>
+
+- Let's test the app.<br>
    In the terminal, navigate to `app` directory and type `yarn start`.
    Open `http://localhost:3000`<br>
-5. Let's start editing `products.js` file.<br>
-    5.1 In the state variable add this json:
 
-   ```jsx
+- Let's start editing `products.js` file.<br>
+    - In the state variable add this json:
+
+    ```jsx
     this.state = {
             products: [{ "name": "KTM Duke", "img": "1.jpg", "id": 1, "price": "2 lakh", "engine": "299 cc" },
             { "name": "KTM RC", "img": "2.jpg", "id": 2, "price": "2.2 lakh", "engine": "299 cc" },
@@ -264,18 +268,18 @@ The time has come when we’re ready with the basic knowledge and can dive into 
               // The arr variable stores the id of selected components
                 arr: []
             }
-        }
-   ```
+    }
+    ```
 
-   1. Let's make a simple `Reactstrap component`.
+    - Let's make a simple `Reactstrap component`.
 
-     1. Add import statement in the starting to import `Reactstrap components`.
+    - Add import statement in the starting to import `Reactstrap components`.
 
        ```jsx
        import { Table, Card, Button, CardTitle, CardText, Row, Col, CardImg } from 'reactstrap';
        ```
 
-     2. Inside the return statement add this:
+    - Inside the return statement add this:
 
       ```jsx
       <Row>
@@ -289,12 +293,12 @@ The time has come when we’re ready with the basic knowledge and can dive into 
       </Row>
       ```
 
-   2. Now, lets fetch the details from the state variable and re build the `Reactstrap component
+   - Now, lets fetch the details from the state variable and re build the `Reactstrap component
 
-   To write a `js` code inside `html elements` use `{}` brackets.
+     To write a `js` code inside `html elements` use `{}` brackets.
 
-   ```jsx
-   <Row>
+     ```jsx
+     <Row>
       {this.state.products.map((product, index) => (
           <Col key={product.id}  md="2" lg="2">
               <Card body outline engine="primary">
@@ -305,16 +309,15 @@ The time has come when we’re ready with the basic knowledge and can dive into 
           </Col>
       ))}
 
-   </Row>
+     </Row>
+     ```
 
-   ```
-
-   1. We need to define the `handleClick` function.
+   - We need to define the `handleClick` function.
    Before that, We need to `bind` the `handleClick` function to the `class` because we want to access the `state variable` inside this function.
 
-   - To do this add `this.handleClick = this.handleClick.bind(this);` after the state variable is declared.
+     - To do this add `this.handleClick = this.handleClick.bind(this);` after the state variable is declared.
 
-   - Outside the constructor let's define the function now.
+     - Outside the constructor let's define the function now.
 
      ```jsx
      // e is the event. For example here the event is `click`. This variable has some information like: name, id etc. of the component which fired it.
@@ -338,11 +341,11 @@ The time has come when we’re ready with the basic knowledge and can dive into 
       }
      ```
 
-   1. The last thing left is to make the `compare table`.
+   - The last thing left is to make the `compare table`.
 
-      For that we have the `id` of all the items to be compared in the `compare.arr` in the `state`. We need a way to figure out how to render.
+        For that we have the `id` of all the items to be compared in the `compare.arr` in the `state`. We need a way to figure out how to render.
 
-   - So, we'll iterate in the `compare.arr` and then create a `new array: temp` which has the objects which we have to compare. It looks similar to `products` array.
+      - So, we'll iterate in the `compare.arr` and then create a `new array: temp` which has the objects which we have to compare. It looks similar to `products` array.
   
      ```jsx
      let temparr = this.state.compare.arr
@@ -359,7 +362,7 @@ The time has come when we’re ready with the basic knowledge and can dive into 
 
    - Create the final `Table` which takes values from the `temp` variable above and maps it to make a `table` exactly the same way we made the `card`.
 
-     Place the table just after the `Card Component`.
+        Place the table just after the `Card Component`.
 
      ```jsx
      <Table>
@@ -380,9 +383,9 @@ The time has come when we’re ready with the basic knowledge and can dive into 
       </Table>
      ```
 
-And now our app is complete. `Save` and refresh the browser.<br>
+And now our app is complete. `Save` and `refresh` the browser.<br>
 
-The final products.jsfile looks like this:
+The final `products.js` file looks like this:
 
 ```jsx
 import React, { Component } from 'react';

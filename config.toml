@@ -37,7 +37,7 @@ pygmentsuseclasses         = true
     name                   = "Resume"
     weight                 = -110
     identifier             = "resume"
-    url                    = "https://drive.google.com/file/d/1mvhzfnxkVf5vxiohIjEZa8KY3p3tvM4l/view?usp=sharing" 
+    url                    = "https://drive.google.com/file/d/1-jkZEwgrpMTdTKaEFRtK2FVAE0ok1SYY/view?usp=sharing" 
 
   [[menu.main]]
     name                   = "About"

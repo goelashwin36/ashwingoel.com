@@ -1,19 +1,11 @@
 // smooth-scroll
 $.smoothScroll({
-    //滑动到的位置的偏移量
     offset: 0,
-    //滑动的方向，可取 'top' 或 'left'
     direction: 'top',
-    // 只有当你想重写默认行为的时候才会用到
     scrollTarget: null,
-    // 滑动开始前的回调函数。`this` 代表正在被滚动的元素
     beforeScroll: function () { },
-    //滑动完成后的回调函数。 `this` 代表触发滑动的元素
     afterScroll: function () { },
-    //缓动效果
     easing: 'swing',
-    //滑动的速度
-    speed: 700,
     // "自动" 加速的系数
     autoCoefficent: 2
 });
@@ -46,12 +38,3 @@ $('a[href*="#"]')
 if (location.hash) {
     $(window).trigger('hashchange');
 }
-
-// // $('[data-spy="scroll"]').each(function () {
-// //     var $spy = $(this).scrollspy('refresh')
-// //   })
-
-// $('[data-spy="scroll"]').on('activate.bs.scrollspy', function () {
-//     // do something…
-//     var offset = $('[data-spy="scroll"]').attr("data-offset")
-//   })

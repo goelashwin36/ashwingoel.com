@@ -31,25 +31,25 @@ pygmentsuseclasses         = true
     name                   = "Blog"
     weight                 = -120
     identifier             = "blog"
-    url                    = "blog/"  
+    url                    = "blog/"
 
   [[menu.main]]
     name                   = "Resume"
     weight                 = -110
     identifier             = "resume"
-    url                    = "https://drive.google.com/file/d/1-jkZEwgrpMTdTKaEFRtK2FVAE0ok1SYY/view?usp=sharing" 
+    url                    = "https://drive.google.com/file/d/1uGt8VKNt-rQZEPJTUaSpfhjs_iDoKFRU/view?usp=sharing"
 
   [[menu.main]]
     name                   = "About"
     weight                 = -100
     identifier             = "about"
-    url                    = "about/"  
+    url                    = "about/"
 
- 
+
 
 [params]
   faviconfile              = "img/Ashwin-Goel-logo.jpg"               # from static/
-  avatar                   = "img/Ashwin-Goel-profile.jpg"             # path to image in static dir e.g img/avatar.png 
+  avatar                   = "img/Ashwin-Goel-profile.jpg"             # path to image in static dir e.g img/avatar.png
   author                   = "Ashwin Goel"
   description              = ["Aspiring Software Developer"]          # appears in the site header when set to a non-empty string
   welcome_head             = ""
@@ -65,7 +65,7 @@ pygmentsuseclasses         = true
   slidesDirPath            = "themes/AllinOne/static/img/header-slides"    # path to image in local dir (path for hugo)
   slidesDirPathURL         = "img/header-slides"    # path to image in static dir (for static pages)
 
-  # highlighting 
+  # highlighting
   highlightjs              = true
 
   # latex
@@ -75,11 +75,11 @@ pygmentsuseclasses         = true
   email                    = "goelashwin36@gmail.com"
   github                   = "//github.com/goelashwin36"
   linkedin                 = "//linkedin.com/in/ashwingoel"
+  medium                   = "//medium.com/@goelashwin36"
   facebook                 = "//facebook.com/ashwingoel36"
   twitter                  = "//twitter.com/ashwingoel36"
   instagram                = "//instagram.com/_ashwin_g_"
   include_rss              = false                          # include RSS <link> tag in <head> and show RSS icon
-  
+
   # analytics
   googleAnalytics          = "UA-140853249-1"
-  

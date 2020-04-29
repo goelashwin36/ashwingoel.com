@@ -6,16 +6,21 @@
   <!-- Social icons -->
   <div class="pb-2 mt-5 pt-5" style="font-size: 1.5rem">
     {{ if $.Site.Params.github }}
-      <a href="{{ $.Site.Params.github }} " target="_blank" rel="noopener"><i class="fab fa-github mr-3" aria-hidden="true"></i></a>    
+      <a href="{{ $.Site.Params.github }} " target="_blank" rel="noopener"><i class="fab fa-github mr-3" aria-hidden="true"></i></a>
     {{ end }}
+
     {{ if $.Site.Params.linkedin }}
       <a href="{{ $.Site.Params.linkedin }}" target="_blank" rel="noopener"><i class="fab fa-linkedin-in mr-3" aria-hidden="true"></i></a>
+    {{ end }}
+
+    {{ if $.Site.Params.medium }}
+        <a href="{{ $.Site.Params.medium }}" target="_blank" rel="noopener"><i class="fab fa-medium mr-3" aria-hidden="true"></i></a>
     {{ end }}
 
     {{ if $.Site.Params.facebook }}
       <a href="{{ $.Site.Params.facebook }}" target="_blank" rel="noopener"><i class="fab fa-facebook-f mr-3" aria-hidden="true"></i></a>
     {{ end }}
-    
+
     {{ if $.Site.Params.twitter }}
         <a href="{{ $.Site.Params.twitter }}" target="_blank" rel="noopener"><i class="fab fa-twitter mr-3" aria-hidden="true"></i></a>
     {{ end }}
@@ -27,6 +32,9 @@
     {{ if $.Site.Params.email }}
         <a href="mailto:{{ $.Site.Params.email }}"><i class="far fa-envelope-open mr-3" aria-hidden="true"></i></a>
     {{ end }}
+
+
+
 
     {{ if and $.Site.Params.include_rss $.RSSLink }}
         <a href="{{ $.RSSLink }}"><i class="fas fa-rss mr-3" aria-hidden="true"></i></a>

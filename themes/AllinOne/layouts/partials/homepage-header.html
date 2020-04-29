@@ -1,7 +1,7 @@
 
 
 {{ $path := cond (gt (len .Site.Params.slidesDirPath) 0) $.Site.Params.slidesDirPath "themes/AllinOne/static/img/header-slides" }}
-{{ $pathURL := cond (gt (len .Site.Params.slidesDirPathURL) 0) $.Site.Params.slidesDirPathURL "img/header-slides" }} 
+{{ $pathURL := cond (gt (len .Site.Params.slidesDirPathURL) 0) $.Site.Params.slidesDirPathURL "img/header-slides" }}
 
 {{ $svg := cond (gt (len .Site.Params.slidesDirPath) 0) $.Site.Params.slidesDirPath "themes/AllinOne/static/img/svg/loader.svg" }}
 
@@ -44,7 +44,7 @@
 
               <!-- Content -->
               <!-- <div class="text-center white-text wow fadeIn">
-                
+
               </div> -->
               <!-- /.Content -->
 
@@ -63,7 +63,7 @@
             <!-- Mask & flexbox options -->
             <!-- <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
 
-            
+
 
             </div> -->
             <!-- /.Mask & flexbox options -->
@@ -74,7 +74,7 @@
       <!-- {{ end }}
     {{ end }} -->
 
-  
+
   </div>
   <!-- /.Slides -->
 
@@ -112,10 +112,14 @@
         <!-- Ref Icon -->
         <div class="mt-2" style="font-size: 2rem; color: white;">
             {{ if $.Site.Params.github }}
-              <a href="{{ $.Site.Params.github }}" target="_blank" rel="noopener"><i class="fab fa-github pr-1" aria-hidden="true"></i></a>    
+              <a href="{{ $.Site.Params.github }}" target="_blank" rel="noopener"><i class="fab fa-github pr-1" aria-hidden="true"></i></a>
             {{ end }}
             {{ if $.Site.Params.linkedin }}
               <a href="{{ $.Site.Params.linkedin }}" target="_blank" rel="noopener"><i class="fab fa-linkedin pr-1" aria-hidden="true"></i></a>
+            {{ end }}
+
+            {{ if $.Site.Params.medium }}
+              <a href="{{ $.Site.Params.medium }}" target="_blank" rel="noopener"><i class="fab fa-medium pr-1" aria-hidden="true"></i></a>
             {{ end }}
 
             {{ if $.Site.Params.facebook }}
@@ -133,12 +137,12 @@
             {{ if $.Site.Params.instagram }}
                 <a href="{{ $.Site.Params.instagram }}" target="_blank" rel="noopener"><i class="fab fa-instagram pr-1" aria-hidden="true"></i></a>
             {{ end }}
-    
+
             {{ if $.Site.Params.px500 }}
                 <a href="{{ $.Site.Params.px500 }}" target="_blank" rel="noopener"><i class="fab fa-500px pr-1" aria-hidden="true"></i></a>
             {{ end }}
-    
-        
+
+
             {{ if $.Site.Params.email }}
                 <a href="mailto:{{ $.Site.Params.email }}"><i class="far fa-envelope-open pr-1" aria-hidden="true"></i></a>
             {{ end }}

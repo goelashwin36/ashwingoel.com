@@ -1,17 +1,19 @@
 +++
-date = "2020-04-29"
+date = "2023-03-26"
 draft = false
 title = "About"
 +++
 
 Hey, this is Ashwin!
 
-I'm currently a third-year student of VIT Vellore pursuing Btech in Computer Science.
+As a Full-Stack developer and SWE-2 at JP Morgan Chase & Co., I am dedicated to building robust systems that drive business success. 
 
-I'm a passionate full-stack developer having experience in creating modular web applications using MERN Stack. I aspire to become a Software Developer, work with great technical teams, and create a huge positive impact on society.
+With AWS Solutions Architect Associate and Developer Associate certifications, I have a solid foundation in cloud architecture and development best practices. 
 
-My techincal skills include Python, C/C++, HTML5, CSS3, JS, jQuery, Bootstrap, Node.js, MongoDB, Express, React, Flask, SQL.
+Whether I'm building robust backend systems or creating intuitive front-end interfaces, I pride myself on my ability to deliver exceptional results on time and on budget. 
 
-Apart from the technical domain, I'm the Marketing and Outreach head of IEEE-VIT ensuring maximum outreach and smooth functioning of the chapter.
+I have also participated in Force For Good at JPMC, an initiative that aims to provide custom solutions to NGOs, where I leveraged my technical skills to make a positive impact on the world. 
 
-I've always believed in engaging with people, making connections, sharing knowledge and bag every possible opportunity for the same. Following the same, I'm currently or have served before as Campus Ambassador of Coding Blocks, Coding Ninjas, Humanity Welfare Foundation, Verzeo.
+In addition, I am passionate about giving knowledge transfer and training sessions, particularly on topics related to AWS Certifications, EKS, ECS, App-Mesh, and MERN Stack. 
+
+I’ll be happy to connect and explore how you are helping drive your team's success with cutting-edge technology solutions that make a difference.

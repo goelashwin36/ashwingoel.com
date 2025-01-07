@@ -4,7 +4,7 @@
 		"module": "commonjs",
 		"target": "es6",
 		"lib": ["es6", "dom"],
-		"sourceMap": true,
+		"sourceMap": false,
 		"allowJs": true,
 		"jsx": "react-jsx",
 		"moduleResolution": "node",
@@ -15,7 +15,8 @@
 		"strictNullChecks": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
-		"skipLibCheck": true
+		"skipLibCheck": true,
+		"noUnusedLocals": true
 	},
 	"exclude": [
 		"node_modules",
